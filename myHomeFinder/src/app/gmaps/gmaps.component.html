@@ -1,3 +1,5 @@
 <p>
-  gmaps works!
+  <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
+    <agm-marker></agm-marker>
+  </agm-map>
 </p>
