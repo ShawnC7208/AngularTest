@@ -6,6 +6,7 @@ import { google } from '@agm/core/services/google-maps-types';
 
 import { Imarker } from '../Shared/Interfaces'
 import { GMapsService } from '../Services/gmasp.service'
+import { ZillowService } from '../Services/zillow.service';
 
 @Component({
   selector: 'app-gmaps',
@@ -19,7 +20,7 @@ export class GmapsComponent implements OnInit {
   StreetAddress: any = [];
   CityStateZip: any = [];
 
-  constructor(private gMapsService: GMapsService) { 
+  constructor(private gMapsService: GMapsService, private zillowService: ZillowService) { 
     //let geocoder = new google.maps.Geocoder();
   }
 
@@ -38,7 +39,6 @@ export class GmapsComponent implements OnInit {
 
       this.gMapsService.getAddressUsingCoordinates(this.lat, this.lng).subscribe(res => { 
         console.log(res.body.results[0]);
-        console.log(res.body.results[0].formatted_address.split(','));
         this.StreetAddress = res.body.results[0].address_components[0].long_name + ' ' + res.body.results[0].address_components[1].long_name;
         let city = res.body.results[0].formatted_address.split(',')[1];
         let state = res.body.results[0].formatted_address.split(',')[2].split(' ')[1];
@@ -47,7 +47,10 @@ export class GmapsComponent implements OnInit {
       });
 
       //Call zillow API using StreetAddress and city/state/zip
-
+      this.zillowService.getHomeInfoUsingAddress(this.StreetAddress, this.CityStateZip).subscribe(res => {
+        console.log(res.body);
+      });
+      
   }
 
 

@@ -8,6 +8,7 @@ import { GmapsComponent } from './gmaps/gmaps.component';
 
 import { GMapsService } from './Services/gmasp.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ZillowService } from './Services/zillow.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
       apiKey: 'AIzaSyCl0ndlU6c7iUMHIBtlsrV2QE8Rr1ym59s'
     })
   ],
-  providers: [GMapsService, HttpClient],
+  providers: [GMapsService, HttpClient, ZillowService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
