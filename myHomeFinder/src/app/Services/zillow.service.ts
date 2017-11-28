@@ -8,6 +8,7 @@ export class ZillowService {
     baseUrl: string = 'http://www.zillow.com/webservice/GetSearchResults.htm?zws-id=';
     zillowId: string = 'X1-ZWz1bd18cvjsaz_8p8sy';
     ZillowHeader: HttpHeaders = new HttpHeaders();
+    proxyUrl: string = "https://cors-anywhere.herokuapp.com/";
     
 
     constructor(private http: HttpClient) { 
@@ -17,7 +18,7 @@ export class ZillowService {
     }
 
     getHomeInfoUsingAddress (address: string, cityStateZip: string): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}${this.zillowId}&address=${address}&citystatezip=${cityStateZip}`,
+        return this.http.get<any>(`${this.proxyUrl}${this.baseUrl}${this.zillowId}&address=${address}&citystatezip=${cityStateZip}`,
         {headers: this.ZillowHeader, observe: 'response', responseType: 'text' as 'json', withCredentials: false});
     }
 
