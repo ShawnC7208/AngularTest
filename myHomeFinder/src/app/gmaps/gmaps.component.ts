@@ -11,6 +11,8 @@ import { GMapsService } from '../Services/gmasp.service'
 import { ZillowService } from '../Services/zillow.service';
 import { Parser, parseString } from "xml2js";
 
+import { DataTable } from "primeng/primeng";
+
 @Component({
   selector: 'app-gmaps',
   templateUrl: './gmaps.component.html',
