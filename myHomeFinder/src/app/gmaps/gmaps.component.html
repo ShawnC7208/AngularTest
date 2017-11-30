@@ -1,16 +1,41 @@
-<p>
+<div class="ui-g-4">
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+      <div class="ui-float-label">
+        <input id="streetAddress" type="text" size="30" [(ngModel)]='StreetAddress' pInputText>
+        <label for="float-input">Street Address</label>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-float-label">
+        <input id="city" type="text" size="30" [(ngModel)]='city' pInputText>
+        <label for="float-input">City</label>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-float-label">
+        <input id="state" type="text" size="30" [(ngModel)]='state' pInputText>
+        <label for="float-input">State</label>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-float-label">
+        <input id="zip" type="text" size="30" [(ngModel)]='zip' pInputText>
+        <label for="float-input">Zip</label>
+      </div>
+    </div>
+    <button pButton type="button" (click)="search()" label="Search"></button>
+  </div>
+</div>
+<div class="ui-g-8">
   <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)" [zoom]="17">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>
-</p>
-<div>
-  <h2>
-      {{StreetAddress}}
-  </h2>
-  <h2>
-    {{CityStateZip}}
-  </h2>
-  <h2>
-    {{ZestimateValue}}
-  </h2>
+</div>
+<div class="ui-g-12">
+  <p-dataTable [value]="locationData" [responsive]="true" [immutable]=false>
+    <p-column field="address" header="StreetAddress"></p-column>
+    <p-column field="cityStateZip" header="City/Sate/Zip"></p-column>
+    <p-column field="zestimate" header="Zestimate"></p-column>
+  </p-dataTable>
 </div>

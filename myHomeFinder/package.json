@@ -13,7 +13,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.2",
-    "@angular/animations": "^5.0.0",
+    "@angular/animations": "^5.0.3",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/core": "^5.0.0",
@@ -26,6 +26,7 @@
     "core-js": "^2.4.1",
     "handlebars": "^4.0.11",
     "primeng": "^5.0.2",
+    "font-awesome": "^4.7.0",
     "rxjs": "^5.5.2",
     "xml2js": "^0.4.19",
     "zone.js": "^0.8.14"

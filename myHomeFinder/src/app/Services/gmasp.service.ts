@@ -2,6 +2,7 @@ import { HttpClient, HttpEvent, HttpInterceptor, HttpRequest } from '@angular/co
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { map, catchError } from 'rxjs/operators';
+import { IlocationData } from "../Shared/Interfaces";
 
 @Injectable()
 export class GMapsService {
