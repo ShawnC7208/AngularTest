@@ -33,9 +33,43 @@
   </agm-map>
 </div>
 <div class="ui-g-12">
-  <p-dataTable [value]="locationData" [responsive]="true" [immutable]=false>
-    <p-column field="address" header="StreetAddress"></p-column>
-    <p-column field="cityStateZip" header="City/Sate/Zip"></p-column>
-    <p-column field="zestimate" header="Zestimate"></p-column>
+  <p-dataTable [value]="locationData" [responsive]="true" [immutable]=false sortMode="multiple">
+    <p-column field="address" header="StreetAddress" [sortable]="true" ></p-column>
+    <p-column field="cityStateZip" header="City/Sate/Zip" [sortable]="true"></p-column>
+    <p-column header="Home value" [sortable]="true">
+      <ng-template let-col let-data="rowData" pTemplate="body">
+        {{data.zestimate | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
+    <p-column header="Low range" [sortable]="true">
+      <ng-template let-col let-data="rowData" pTemplate="body">
+        {{data.zestimateLow | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
+    <p-column header="High range" [sortable]="true">
+      <ng-template let-col let-data="rowData" pTemplate="body">
+        {{data.zestimateHigh | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
+    <p-column header="MontlyRent(10%)" [sortable]="true">
+      <ng-template let-col let-data="rowData" pTemplate="body">
+        {{data.monthlyRent | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
+    <p-column header="YearlyRent(10%)" [sortable]="true">
+      <ng-template let-col let-data="rowData" pTemplate="body">
+        {{data.yearlyRent | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
+    <p-column header="Tax/Insurance(2.7%)" [sortable]="true">
+      <ng-template let-col let-data="rowData" pTemplate="body">
+        {{data.taxInsurance | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
+    <p-column header="HOAFees" [sortable]="true">
+      <ng-template let-col let-data="rowData" pTemplate="body">
+        {{data.HOA | currency: 'USD' : true}}
+      </ng-template>
+    </p-column>
   </p-dataTable>
 </div>

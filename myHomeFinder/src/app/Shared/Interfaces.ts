@@ -7,5 +7,11 @@ export interface Imarker {
 export interface IlocationData {
     address: string;
     cityStateZip: string;
-    zestimate: string;
+    zestimate: number;
+    zestimateLow: number;
+    zestimateHigh: number;
+    monthlyRent: number;
+    yearlyRent: number;
+    taxInsurance: number;
+    HOA: number;
 }

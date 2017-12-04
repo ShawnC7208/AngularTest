@@ -26,7 +26,9 @@ export class GmapsComponent implements OnInit {
   state: string = '';
   zip: string = '';
   CityStateZip: string = '';
-  ZestimateValue: string = '';
+  ZestimateValue: number = 0;
+  ZestimateValueHigh: number = 0;
+  ZestimateValueLow: number = 0;
   test: string = 'testing';
   locationData: IlocationData[] = [];
 
@@ -57,8 +59,14 @@ export class GmapsComponent implements OnInit {
       })
       ).subscribe(response => {
         parseString(response.body, function (err, result) {
-          that.ZestimateValue = String(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
-          that.locationData.push({ 'address': that.StreetAddress, 'cityStateZip': that.CityStateZip, 'zestimate': that.ZestimateValue });
+          that.ZestimateValue = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
+          that.ZestimateValueHigh = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].high[0]._);
+          that.ZestimateValueLow = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].low[0]._);
+          that.locationData.push({ 'address': that.StreetAddress, 'cityStateZip': that.CityStateZip, 
+                                  'zestimate': that.ZestimateValue, 'zestimateLow': that.ZestimateValueLow, 'zestimateHigh': that.ZestimateValueHigh,
+                                  'monthlyRent': (that.ZestimateValue * .1)/12, 'yearlyRent': (that.ZestimateValue * .1), 
+                                  'taxInsurance': (that.ZestimateValue * .027), 'HOA': (that.ZestimateValue * .013)
+                                 });
         });
       });
   }
@@ -70,11 +78,15 @@ export class GmapsComponent implements OnInit {
       .subscribe(response => {
         console.log((response.body));
         parseString(response.body, function (err, result) {
-          console.dir(result["SearchResults:searchresults"].response[0].results[0].result[0]);
-          console.dir(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
           console.log(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
-          that.ZestimateValue = String(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
-          that.locationData.push({ 'address': that.StreetAddress, 'cityStateZip': that.CityStateZip, 'zestimate': that.ZestimateValue });
+          that.ZestimateValue = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
+          that.ZestimateValueHigh = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].high[0]._);
+          that.ZestimateValueLow = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].low[0]._);
+          that.locationData.push({ 'address': that.StreetAddress, 'cityStateZip': that.CityStateZip, 
+                                  'zestimate': that.ZestimateValue, 'zestimateLow': that.ZestimateValueLow, 'zestimateHigh': that.ZestimateValueHigh,
+                                  'monthlyRent': (that.ZestimateValue * .1)/12, 'yearlyRent': (that.ZestimateValue * .1), 
+                                  'taxInsurance': (that.ZestimateValue * .027), 'HOA': (that.ZestimateValue * .013)
+                                });
         })
       });
   }
