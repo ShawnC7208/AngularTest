@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, AgmMarker } from '@agm/core';
 import { HttpClient, HttpEvent, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AgmCoreModule, GoogleMapsAPIWrapper, MapsAPILoader, AgmMarker } from '@agm/core';
@@ -78,7 +78,7 @@ export class GmapsComponent implements OnInit {
       .subscribe(response => {
         console.log((response.body));
         parseString(response.body, function (err, result) {
-          console.log(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
+          console.log(result["SearchResults:searchresults"].response[0].results[0].result[0]);
           that.ZestimateValue = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].amount[0]._);
           that.ZestimateValueHigh = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].high[0]._);
           that.ZestimateValueLow = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].zestimate[0].valuationRange[0].low[0]._);
@@ -87,6 +87,8 @@ export class GmapsComponent implements OnInit {
                                   'monthlyRent': (that.ZestimateValue * .1)/12, 'yearlyRent': (that.ZestimateValue * .1), 
                                   'taxInsurance': (that.ZestimateValue * .027), 'HOA': (that.ZestimateValue * .013)
                                 });
+        that.lat = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].address[0].latitude[0]);
+        that.lng = Number(result["SearchResults:searchresults"].response[0].results[0].result[0].address[0].longitude[0]);
         })
       });
   }
