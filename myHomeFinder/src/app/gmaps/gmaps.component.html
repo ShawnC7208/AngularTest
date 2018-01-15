@@ -36,37 +36,37 @@
   <p-dataTable [value]="locationData" [responsive]="true" [immutable]=false sortMode="multiple">
     <p-column field="address" header="StreetAddress" [sortable]="true" ></p-column>
     <p-column field="cityStateZip" header="City/Sate/Zip" [sortable]="true"></p-column>
-    <p-column header="Home value" [sortable]="true">
+    <p-column data-field="zestimate" header="Home value" [sortable]="true">
       <ng-template let-col let-data="rowData" pTemplate="body">
         {{data.zestimate | currency: 'USD' : true}}
       </ng-template>
     </p-column>
-    <p-column header="Low range" [sortable]="true">
+    <p-column data-field="zestimateLow" header="Low range" [sortable]="true">
       <ng-template let-col let-data="rowData" pTemplate="body">
         {{data.zestimateLow | currency: 'USD' : true}}
       </ng-template>
     </p-column>
-    <p-column header="High range" [sortable]="true">
+    <p-column data-field="zestimateHigh" header="High range" [sortable]="true">
       <ng-template let-col let-data="rowData" pTemplate="body">
         {{data.zestimateHigh | currency: 'USD' : true}}
       </ng-template>
     </p-column>
-    <p-column header="MontlyRent(10%)" [sortable]="true">
+    <p-column data-field="monthlyRent" header="MontlyRent(10%)" [sortable]="true">
       <ng-template let-col let-data="rowData" pTemplate="body">
         {{data.monthlyRent | currency: 'USD' : true}}
       </ng-template>
     </p-column>
-    <p-column header="YearlyRent(10%)" [sortable]="true">
+    <p-column data-field="yearlyRent" header="YearlyRent(10%)" [sortable]="true">
       <ng-template let-col let-data="rowData" pTemplate="body">
         {{data.yearlyRent | currency: 'USD' : true}}
       </ng-template>
     </p-column>
-    <p-column header="Tax/Insurance(2.7%)" [sortable]="true">
+    <p-column data-field="taxInsurance" header="Tax/Insurance(2.7%)" [sortable]="true">
       <ng-template let-col let-data="rowData" pTemplate="body">
         {{data.taxInsurance | currency: 'USD' : true}}
       </ng-template>
     </p-column>
-    <p-column header="HOAFees" [sortable]="true">
+    <p-column data-field="HOA" header="HOAFees" [sortable]="true">
       <ng-template let-col let-data="rowData" pTemplate="body">
         {{data.HOA | currency: 'USD' : true}}
       </ng-template>
