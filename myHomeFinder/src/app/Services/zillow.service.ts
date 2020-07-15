@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable()
 export class ZillowService {
     baseUrl: string = 'http://www.zillow.com/webservice/GetSearchResults.htm?zws-id=';
-    zillowId: string = 'X1-ZWz1bd18cvjsaz_8p8sy';
+    zillowId: string = '';
     ZillowHeader: HttpHeaders = new HttpHeaders();
     proxyUrl: string = "https://cors-anywhere.herokuapp.com/";
     
